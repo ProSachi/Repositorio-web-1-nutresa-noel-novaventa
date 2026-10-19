@@ -1,3 +1,16 @@
+grupo-filtro .input-texto {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--linea);
+  background-color: var(--card);
+  font-family: "Inter", sans-serif;
+  color: var(--texto);
+  min-width: 200px;
+}
+.grupo-filtro .input-texto:focus {
+  outline: 2px solid var(--verde-hondo);
+  border-color: transparent;
+}
 panel-filtros {
   background-color: var(--crema-2);
   padding: 1.25rem;

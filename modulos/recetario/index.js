@@ -8,6 +8,7 @@
   const formulario = document.getElementById("formulario-filtros");
   const btnRestablecer = document.getElementById("btn-restablecer");
   const filtroTiempo = document.getElementById("filtro-tiempo");
+  const filtroPorciones = document.getElementById("filtro-porciones");
 
   
   function renderizarGaleria(recetas) {
@@ -34,19 +35,32 @@
     }
   }
 
-  function aplicarFiltros() {
-    const tiempoSeleccionado = filtroTiempo.value;
+ 
+function aplicarFiltros() {
+  const tiempoSeleccionado = document.getElementById("filtro-tiempo").value;
+  const porcionesSeleccionadas = document.getElementById("filtro-porciones").value;
+  
+  const textoBusqueda = document.getElementById("filtro-nombre").value.toLowerCase();
 
-    const recetasFiltradas = recetasLocales.filter(receta => {
-      // 
-      if (tiempoSeleccionado === "todos") return true;
-      
-      
-      return receta.minutos <= parseInt(tiempoSeleccionado, 10);
-    });
+  const recetasFiltradas = recetasLocales.filter(receta => {
+  
+    const pasaTiempo = tiempoSeleccionado === "todos" || receta.minutos <= parseInt(tiempoSeleccionado, 10);
+    
+    
+    const pasaPorciones = porcionesSeleccionadas === "todas" || receta.porciones === parseInt(porcionesSeleccionadas, 10);
+    
+    
+    const nombreRecetaMinusculas = receta.nombreReceta.toLowerCase();
+    const pasaNombre = textoBusqueda === "" || nombreRecetaMinusculas.includes(textoBusqueda);
 
-    renderizarGaleria(recetasFiltradas);
-  }
+    return pasaTiempo && pasaPorciones && pasaNombre;
+  });
+
+  renderizarGaleria(recetasFiltradas);
+}
+
+
+document.getElementById("formulario-filtros").addEventListener("input", aplicarFiltros);
   
   function restablecer() {
     formulario.reset(); 
