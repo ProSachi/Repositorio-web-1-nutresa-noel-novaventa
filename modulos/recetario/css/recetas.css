@@ -72,11 +72,7 @@ panel-filtros {
   font-size: 0.85rem;
   border: 1px solid var(--linea);
 }
-.badge {
-  background-color: var(--crema);
-  color: var(--texto);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  border: 1px solid var(--linea);
+
+.oculto {
+  display: none !important;
 }

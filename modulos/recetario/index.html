@@ -5,14 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sazón · Recetario</title>
   <link rel="stylesheet" href="../../assets/css/sazon.css">
+  <link rel="stylesheet" href="recetas.css">
 </head>
 <body>
   <header data-layout="header"></header>
   <main class="contenedor pagina-modulo">
     <section class="bloque-modulo">
-      <h1>Módulo Recetario</h1>
-      <p>Base lista para desarrollar historias de usuario del recetario.</p>
-      <div id="recetario-estado" class="mensaje-estado" role="status"></div>
+      <h1> Recetario</h1>
+      <p>Encuentra tu receta ideal por el tiempo de preparacion</p>
+      <form id="formulario-filtros" class="panel-filtros" aria-label="Filtros de búsqueda de recetas">
+        <fieldset>
+          <legend>Filtros de Recetas</legend>
+
+          <select id="filtro-tiempo" name="tiempo" aria-controls="galeria-recetas">
+              <option value="todos">Cualquier tiempo</option>
+              <option value="15">Hasta 15 minutos</option>
+              <option value="30">Hasta 30 minutos</option>
+              <option value="45">Hasta 45 minutos</option>
+            </select>
+          
+          <div class="grupo-filtro">
+            <label for="filtro-tiempo">Tiempo máximo de preparación:</label>
+            <select id="filtro-tiempo" name="tiempo" aria-controls="galeria-recetas">
+              <option value="todos">Cualquier tiempo</option>
+              <option value="15">Hasta 15 minutos</option>
+              <option value="30">Hasta 30 minutos</option>
+              <option value="45">Hasta 45 minutos</option>
+            </select>
+          </div>
     </section>
   </main>
   <footer data-layout="footer"></footer>
