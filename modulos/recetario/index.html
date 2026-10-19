@@ -5,20 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sazón · Recetario</title>
   <link rel="stylesheet" href="../../assets/css/sazon.css">
+  <link rel="stylesheet" href="recetas.css">
 </head>
 <body>
   <header data-layout="header"></header>
   <main class="contenedor pagina-modulo">
     <section class="bloque-modulo">
-      <h1>Módulo Recetario</h1>
-      <p>Base lista para desarrollar historias de usuario del recetario.</p>
-      <div id="recetario-estado" class="mensaje-estado" role="status"></div>
+      <h1> Recetario</h1>
+      <p>Encuentra tu receta ideal por el tiempo de preparacion</p>
+      <form id="formulario-filtros" class="panel-filtros" aria-label="Filtros de búsqueda de recetas">
+        <fieldset>
+          <legend>Filtros de Recetas</legend>
+
+          <div class="grupo-filtro">
+      <label for="filtro-nombre">Buscar receta:</label>
+      <input type="text" id="filtro-nombre" placeholder="Ej. Arepa, Pasta..." class="input-texto">
+    </div>
+
+<div class="grupo-filtro">
+            <label for="cantidad-porciones">cantidad de porciones</label>
+            <select id="cantidad-porciones" name="porciones" aria-controls="galeria-recetas">
+              <option value="todos">todos</option>
+              <option value="1">1 porciones</option>
+              <option value="2">2 porciones</option>
+              <option value="3">3 porciones</option>
+            </select>
+          </div>
+          
+          <div class="grupo-filtro">
+            <label for="filtro-tiempo">Tiempo máximo de preparación:</label>
+            <select id="filtro-tiempo" name="tiempo" aria-controls="galeria-recetas">
+              <option value="todos">todos</option>
+              <option value="15">Hasta 15 minutos</option>
+              <option value="30">Hasta 30 minutos</option>
+              <option value="45">Hasta 45 minutos</option>
+            </select>
+          </div>
+          <button type="button" id="btn-restablecer" class="btn btn-secundario">Restablecer filtros</button>
+        </fieldset>
+      </form>
+      <div id="galeria-recetas" class="grid-galeria" aria-live="polite"></div>
+      <div id="recetario-estado" class="mensaje-estado oculto" role="status"></div>
     </section>
   </main>
   <footer data-layout="footer"></footer>
   <script src="../../services/api.config.js"></script>
   <script src="../../assets/js/layout.js"></script>
+  <script src="recetas.js"></script>
   <script src="servicio.js"></script>
   <script src="index.js"></script>
+
 </body>
 </html>
