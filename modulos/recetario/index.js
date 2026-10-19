@@ -7,8 +7,6 @@
   const galeria = document.getElementById("galeria-recetas");
   const formulario = document.getElementById("formulario-filtros");
   const btnRestablecer = document.getElementById("btn-restablecer");
-  const filtroTiempo = document.getElementById("filtro-tiempo");
-  const filtroPorciones = document.getElementById("filtro-porciones");
 
   
   function renderizarGaleria(recetas) {
