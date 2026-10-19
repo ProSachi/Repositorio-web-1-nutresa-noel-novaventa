@@ -1,40 +1,59 @@
-# Historia de Usuario: Galería Visual y Gestión Frontend de Fotos de Receta
+/**
+ * Módulo de Recetario y Contenido - Proyecto Sazón
+ * Historia de Usuario: G2-FOT-M01 / FotoReceta
+ * Descripción: Modelo y renderizado dinámico de fotos de recetas en el DOM.
+ */
 
-**Código / ID:** HU-FRONT-FOT-01 (Adaptación de G2-FOT-M01)  
-**Módulo:** Grupo 2 · Recetario y Contenido — Proyecto Sazón  
-**Rol / Actor:** Usuario / Chef  
-**Prioridad:** Alta  
-**Estimación:** 5 Puntos de Historia (Sprint 1 — Vencimiento: 30 de octubre)  
-**Asignado a:** Miguel Gómez Aguilar (MG)
+// 1. Estructura de Datos / Entidad FotoReceta (5 atributos de la BBDD)
+const listaFotosReceta = [
+  {
+    idFoto: 1,
+    idReceta: 101,
+    urlFoto: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
+    esPrincipal: true,
+    fechaSubida: "2026-10-15"
+  },
+  {
+    idFoto: 2,
+    idReceta: 101,
+    urlFoto: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445",
+    esPrincipal: false,
+    fechaSubida: "2026-10-16"
+  }
+];
 
-## Descripción
-**Como** usuario / chef de la plataforma Sazón,  
-**Quiero** visualizar una galería interactiva con las imágenes asociadas a una receta y contar con un formulario frontend para subir/gestionar las fotos pertenecientes a la entidad `FotoReceta` (tabla `fotos_receta`),  
-**Para** apreciar la presentación visual del platillo, identificar la foto principal y mejorar la experiencia de navegación en el recetario.
+/**
+ * Renderiza la galería de fotografías asociadas a una receta en el DOM.
+ * @param {Array} fotos - Listado de objetos FotoReceta.
+ */
+function renderizarGaleriaFotos(fotos) {
+  const contenedor = document.getElementById("galeria-fotos") || document.body;
 
-## Mapeo de Atributos (Entidad BBDD vs. Frontend JS)
+  // Limpiar contenedor
+  const galeriaHTML = document.createElement("div");
+  galeriaHTML.className = "galeria-receta-container";
 
-| Atributo BBDD | Tipo Dato Backend | Propiedad JS / DOM | Descripción y Uso en Frontend |
-| :--- | :--- | :--- | :--- |
-| `id_foto` | Long / INT | `idFoto` | Identificador único de la fotografía |
-| `id_receta` | Long / INT | `idReceta` | ID de la receta enlazada (Clave Foránea) |
-| `url_foto` | String / VARCHAR | `urlFoto` | Dirección de la imagen inyectada en el `src` del `<img>` |
-| `es_principal` | Boolean / TINYINT | `esPrincipal` | Determina si la foto lleva la etiqueta/badge de "Portada" |
-| `fecha_subida` | LocalDateTime / DATE | `fechaSubida` | Fecha de carga visualizada en la galería |
+  fotos.forEach((foto) => {
+    const tarjetaFoto = document.createElement("div");
+    tarjetaFoto.className = `tarjeta-foto ${foto.esPrincipal ? "foto-principal" : ""}`;
 
----
+    tarjetaFoto.innerHTML = `
+      <div class="foto-wrapper">
+        <img src="${foto.urlFoto}" alt="Foto de la receta ${foto.idReceta}" class="img-receta" />
+        ${foto.esPrincipal ? '<span class="badge-principal">Foto Principal</span>' : ''}
+      </div>
+      <div class="foto-info">
+        <small>Subida el: ${foto.fechaSubida}</small>
+      </div>
+    `;
 
-## Criterios de Aceptación (Frontend & JS)
+    galeriaHTML.appendChild(tarjetaFoto);
+  });
 
-1. **Renderizado Dinámico de la Galería:**
-   - Mediante JavaScript (`fotoReceta.js`), la aplicación debe consumir el arreglo de objetos de la entidad `FotoReceta` (con sus 5 atributos) y renderizarlos en el contenedor `<div id="galeria-fotos">`.
+  contenedor.appendChild(galeriaHTML);
+}
 
-2. **Distintivo de Foto Principal:**
-   - Si la propiedad `esPrincipal` es igual a `true`, la interfaz debe agregar automáticamente una clase CSS (`.foto-principal`) y mostrar un badge que indique que es la imagen destacada de la receta.
-
-3. **Formulario de Carga Interactiva (DOM Listener):**
-   - La vista debe incluir un formulario `<form id="form-foto-receta">` con campos para ingresar la `urlFoto` y marcar si `esPrincipal`.
-   - Al enviar el formulario, el evento `submit` debe ser capturado por JavaScript, previniendo la recarga de página (`e.preventDefault()`) y agregando la foto dinámicamente al DOM.
-
-4. **Control de Errores e Imágenes Rotas:**
-   - Si la URL suministrada falla al cargar, JS debe capturar el evento `error` en la etiqueta `<img>` y reemplazar la imagen dañada por un *placeholder* predeterminado de Sazón.
+// 2. Inicialización al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarGaleriaFotos(listaFotosReceta);
+});
