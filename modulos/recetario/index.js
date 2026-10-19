@@ -2,7 +2,7 @@
   
   let recetasLocales = []; 
   
-  // Elementos del DOM
+
   const estado = document.getElementById("recetario-estado");
   const galeria = document.getElementById("galeria-recetas");
   const formulario = document.getElementById("formulario-filtros");
@@ -49,7 +49,7 @@
   }
   
   function restablecer() {
-    formulario.reset(); // Vuelve el <select> a la opción "todos"
+    formulario.reset(); 
     renderizarGaleria(recetasLocales); 
   }
 
