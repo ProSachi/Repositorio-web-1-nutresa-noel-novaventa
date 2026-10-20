@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sazón · Recetario</title>
+  <link rel="stylesheet" href="../../assets/css/sazon.css">
+  <link rel="stylesheet" href="recetario.css">
+</head>
+<body>
+  <header data-layout="header"></header>
+  <main class="contenedor pagina-modulo">
+    <section class="bloque-modulo">
+      <h1>Recetario</h1>
+      <p>Encuentra tu receta ideal por nombre, porciones o tiempo de preparación.</p>
+
+      <form id="formulario-filtros" class="panel-filtros" aria-label="Filtros de búsqueda de recetas">
+        <fieldset>
+          <legend>Filtros de recetas</legend>
+
+          <div class="grupo-filtro">
+            <label for="filtro-nombre">Buscar receta:</label>
+            <input type="text" id="filtro-nombre" placeholder="Ej. Arepa, Pasta..." class="input-texto">
+          </div>
+
+          <div class="grupo-filtro">
+            <label for="filtro-porciones">Porciones (mínimo):</label>
+            <select id="filtro-porciones" name="porciones" aria-controls="galeria-recetas">
+              <option value="todos">Todas</option>
+              <option value="2">2 o más</option>
+              <option value="4">4 o más</option>
+              <option value="6">6 o más</option>
+            </select>
+          </div>
+
+          <div class="grupo-filtro">
+            <label for="filtro-tiempo">Tiempo máximo de preparación:</label>
+            <select id="filtro-tiempo" name="tiempo" aria-controls="galeria-recetas">
+              <option value="todos">Todos</option>
+              <option value="15">Hasta 15 minutos</option>
+              <option value="30">Hasta 30 minutos</option>
+              <option value="45">Hasta 45 minutos</option>
+            </select>
+          </div>
+
+          <button type="button" id="btn-restablecer" class="btn btn-secundario">Restablecer filtros</button>
+        </fieldset>
+      </form>
+
+      <div id="galeria-recetas" class="grid-galeria" aria-live="polite"></div>
+      <div id="recetario-estado" class="mensaje-estado oculto" role="status"></div>
+    </section>
+  </main>
+  <footer data-layout="footer"></footer>
+
+  <script src="../../services/api.config.js"></script>
+  <script src="../../assets/js/layout.js"></script>
+  <script src="recetas.js"></script>
+  <script src="recetario.js"></script>
+</body>
+</html>
