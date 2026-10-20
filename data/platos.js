@@ -1,6 +1,4 @@
 (function () {
-  // Datos locales del módulo de nutrición: recetas con productos de la familia Nutresa.
-  // Valores aproximados por porción; verificar con la tabla nutricional del empaque.
   window.platosNutricionData = [
     {
       id: 1,
