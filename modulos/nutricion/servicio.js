@@ -1,15 +1,15 @@
 (function () {
+  "use strict";
+
   window.nutricionServicio = {
     async listarTodos() {
-      return Promise.resolve(
-        window.nutricionMockData || {
-          informacionNutricional: [],
-          perfilesAlimentarios: [],
-          alergenos: [],
-          restriccionesPerfil: [],
-          objetivosNutricionales: []
-        }
-      );
-    }
+      const platos = window.platosNutricionData;
+
+      if (!Array.isArray(platos)) {
+        throw new Error("No se cargaron los datos de platos de nutrición.");
+      }
+
+      return platos;
+    },
   };
 })();
